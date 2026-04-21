@@ -1,42 +1,66 @@
 # VulnServer HTER Buffer Overflow Study
 
-Work-in-progress repository for studying buffer overflow exploitation against VulnServer, focused on the `HTER` command.
+Structured lab repository for studying stack-based buffer overflow techniques against VulnServer, with focus on the HTER workflow and exploit development lifecycle.
 
-## Status
+## Project Goal
 
-This project is currently under development and is being used as a hands-on study environment for:
+This repository is designed to support practical, step-by-step training in a controlled security environment.
 
-- fuzzing
-- crash reproduction
-- offset validation
-- EIP control confirmation
-- exploit development workflow
+Main objectives:
 
-## Repository Contents
+- perform protocol fuzzing and crash discovery
+- reproduce and analyze crashes
+- validate offset and EIP control
+- identify bad characters
+- evolve from proof-of-concept to exploit script
 
-### `fuzzing.py`
-Simple fuzzing script that sends increasing payload sizes to the `HTER` command in order to identify crash behavior and estimate the vulnerable input range.
+## VulnServer Download
 
-### `xpl.py`
-Initial proof-of-concept script used to validate payload structure and observe memory/register behavior during the crash.
+To test these scripts, download VulnServer from the official GitHub repository:
 
-## Current Environment
+- https://github.com/stephenbradshaw/vulnserver
 
-- Target: VulnServer
-- Command under test: `HTER`
-- Target host: `192.168.100.129`
-- Target port: `9999`
+Run VulnServer only in an isolated and authorized lab environment.
 
-## Notes
+## Repository Structure
 
-This repository is intended for educational purposes in a controlled lab environment.
+- bad.py: helper script for bad character generation and checks
+- fuzzing.py: sends incremental payload sizes to map vulnerable input ranges
+- outro.py: payload pattern and offset-oriented helper flow
+- xpl.py: exploit-oriented script with payload construction and target communication
 
-The code is not final and may be updated as the study progresses.
+## Lab Setup
+
+Recommended environment:
+
+- attacker machine: Linux with Python 3
+- target machine: Windows running VulnServer
+- debugger: Immunity Debugger (or equivalent) on target machine
+- isolated network segment between attacker and target
+
+## Quick Start
+
+1. Start VulnServer on the target machine.
+2. Confirm IP and port configuration in xpl.py.
+3. Run your selected script from this repository.
+4. Observe server and debugger behavior for crash analysis and exploit iteration.
+
+## Example Execution
+
+Run exploit script:
+
+python3 xpl.py
+
+Run fuzzing script:
+
+python3 fuzzing.py
+
+## Scope and Safety
+
+This project is for education and authorized security testing only.
+
+Do not run these techniques on systems without explicit permission.
 
 ## Author
 
 Lucas Morais (SaySeven / @sayseven7)
-
-## Disclaimer
-
-For educational and authorized lab use only.
